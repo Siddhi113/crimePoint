@@ -1,0 +1,420 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>crimePoint</title>
+     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Meta OG -->
+    <meta property="og:title" content="Responsive Admin Dashboard Template">
+    <meta property="og:description" content="Proper data categorization and intuitive layout might go a long way when it comes to creating your dashboard.">
+    <meta property="og:image" content="../../../../img/Live/MDB/admin-homev3.jpg">
+    <meta property="og:url" content="home%20v3.html">
+    <meta property="og:site_name" content="mdbootstrap.com">
+    <!-- /Meta OG -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="Proper data categorization and intuitive layout might go a long way when it comes to creating your dashboard." />
+    <meta name="twitter:title" content="Responsive Admin Dashboard Template" />
+    <meta name="twitter:site" content="@MDBootstrap" />
+    <meta name="twitter:image" content="../../../../img/Live/MDB/admin-homev3.jpg" />
+    <meta name="twitter:creator" content="@MDBootstrap" />
+    <!-- /Twitter Card -->
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../../../maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Customizer -->
+    <link rel="stylesheet" href="../../css/customizer.min.css">
+   
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cgp8OjuVlYgmaGD4-xxuxH_vbqunS2M&libraries=places&callback=initMap"
+         async defer></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+	 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+      <style>
+         .left{
+          float: left;
+          width: 75%;
+          height: 400px;
+         padding-right: 4%;          
+      }
+      .right{
+          float:left;
+          width: 24%;
+          height: 400px;
+          margin-left: 0.9%;
+
+      }
+    .container{
+          padding: 0.5%;
+      }
+      
+      .card{
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          padding: 0.5%;
+          height:auto;
+          margin-left: 0px;
+        }
+      
+           #searchInput{
+          width: 30%;
+          border: 1px solid black;
+          background-color: white;
+        }
+        #heading{
+          padding-left: 9.3%;
+        }
+      
+    </style>
+	<script>
+	  // Initialize Firebase
+	 
+	</script>
+	<script>
+
+		$(document).ready(function(){
+		 var config = {
+    apiKey: "AIzaSyA53DpBwzepM6SwAaoLZ0CVw8hggXv1Wao",
+    authDomain: "crimepoint-e5354.firebaseapp.com",
+    databaseURL: "https://crimepoint-e5354.firebaseio.com",
+    projectId: "crimepoint-e5354",
+    storageBucket: "crimepoint-e5354.appspot.com",
+    messagingSenderId: "252482425198"
+  };
+  firebase.initializeApp(config);
+				$('#SubmitData').click(function(){
+				firebase.auth().onAuthStateChanged(function(user) {
+      if(user){
+				
+					var lat = $('#lat').val();
+					var lng = $('#lng').val();
+					var tag1 = $('#form5').val();
+					var title = $('#form8').val();
+					var isOfficial = $('#form9').val();
+					var description = $('#form10').val();
+                    var city = $('#form11').val();
+					alert('Successfully added');
+					 firebase.database().ref('/development/crimeSpot/').push({
+					
+					'lat' : lat,
+					'lng' : lng,
+					'tag1' : tag1,
+					'title' : title,
+					'isOfficial' : isOfficial,
+                    'description' : description,
+                    'city' : city
+				  }, function(error) {
+					alert(error.message);
+					});
+					
+					
+			  
+				  
+				}
+				else{
+				alert("First login Your Account.")
+				}
+				});				
+				  
+				});
+							
+		});
+	
+	</script>
+</head>
+
+    <body class="fixed-sn white-skin">
+        <nav class="navbar  navbar-toggleable-md navbar-dark scrolling-navbar double-nav">
+    <!--Double navigation-->
+    <!--Main layout-->
+    
+        <div class="container-fluid">
+            <!-- Section: Edit Account -->
+            
+                <div class="col-md-6 col-lg-5 mx-auto float-none">
+                <div class="card contact-card card-cascade narrower mb-r">
+                            <div class="admin-panel info-admin-panel">
+                                <!--Card image-->
+                                <div class="view Black" >
+                                    <h2>FIR REGISTRATION</h2>
+                                </div>
+                            </div>
+                </div>
+                </div>
+                <!-- First row -->
+                   <div class="row">
+                    <!-- First column -->
+                    
+                    <!-- /.First column -->
+                     <div class="col-lg-9 mx-auto float-none">
+                        <!--Card-->
+                        <div class="card card-cascade narrower mb-r" >
+                            <div class="admin-panel info-admin-panel">
+                                <!--Card image-->
+                                <div class="view Black">
+                                    <h5>Find Latitude and Longitude</h5>
+                                </div>
+
+                                <div class="container">
+                                    <input id="searchInput" class="input-controls" type="text" placeholder="Enter your location.! ">
+                                    
+                                        
+                                            <div class="map" id="map" style="width: 100%; height: 280px;"></div>
+                                    
+                                                               
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- /.First column -->
+                     
+                    <!-- Second column -->
+                    <div class="col-lg-12">
+                        <!--Card-->
+                        <div class="card card-cascade narrower mb-r">
+                            <div class="admin-panel info-admin-panel">
+                                <!--Card image-->
+                                <div class="view Black">
+                                    <h5>Add Utility service</h5>
+                                </div>
+                                <!--/Card image-->
+                                <!--Card content-->
+                                <div class="card-block">
+                                    <!-- Edit Form -->
+                                    <form>
+                                        <!--First row-->
+                                        <div class="row">
+                                            <!--First column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                             Latitude <input type="text" id="lat" class="form-control validate" placeholder="Latitude(° N)">
+                                                </div>
+                                            </div>
+                                            <!--Second column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                        Longitude <input type="text" id="lng" class="form-control validate" placeholder="Longitude(° E)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/.First row-->
+                                        <!--First row-->
+                                        <div class="row">
+                                            <!--First column-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="form8" >Title </label>
+                                                        <select class="form-control" id="form8">
+                                                        
+                                                        <option>Accident Case</option>
+                                                        <option>Robbery Case</option>
+                                                        <option>Murder Case</option>
+                                                        <option>Motor Vehicle Theft Case</option>
+                                                        <option>Rape Case</option>
+                                                        <option>Aggravated Assault Case</option>
+                                                        <option>Molestation Case</option>
+                                                        <option>Offence against property</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <!--Second column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                                Description <input type="text" id="form10" class="form-control validate">
+                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/.First row-->
+                                        <!--Second row-->
+                                        <div class="row">
+                                            <!--First column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                            Case Assigned To <input type="text" id="form9" class="form-control" placeholder="Officer Name">
+                                                </div>
+                                            </div>
+                                            <!--Second column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                        TimeStamp <input type="datetime-local" id="form5" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/.Second row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <div class="md-form">
+                                                   City <input type="text" id="form11" class="form-control validate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fourth row -->
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <h1 type="submit" value="Submit" id="SubmitData" class="btn btn-primary black">Submit</h1>
+                                            </div>
+                                        </div>
+                                        <!-- /.Fourth row -->
+                                    </form>
+                                    <!-- Edit Form -->
+                                </div>
+                                <!--/.Card content-->
+                            </div>
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!-- /.Second column -->
+                </div>
+                <!-- /.First row -->
+            
+            <!-- /.Section: Edit Account -->
+        </div>
+        <main>
+        
+            <!--Section: Intro-->
+            <section class="section section-intro">
+
+            </section>
+          <script>
+/* script */
+function initialize() {
+   var latlng = new google.maps.LatLng(23.022505000000013,72.57410868203124);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: latlng,
+      zoom: 13
+    });
+    var marker = new google.maps.Marker({
+      map: map,
+      position: latlng,
+      draggable: true,
+      anchorPoint: new google.maps.Point(0, -29)
+   });
+    var input = document.getElementById('searchInput');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var geocoder = new google.maps.Geocoder();
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();   
+    autocomplete.addListener('place_changed', function() {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+        }
+  
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+       
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);          
+    
+        bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
+        infowindow.setContent(place.formatted_address);
+        infowindow.open(map, marker);
+       
+    });
+    // this function will work on marker move event into map 
+    google.maps.event.addListener(marker, 'dragend', function() {
+        geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {        
+              bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+          }
+        }
+        });
+    });
+}
+function bindDataToForm(address,lat,lng){
+   document.getElementById('form11').value = address;
+   document.getElementById('lat').value = lat;
+   document.getElementById('lng').value = lng;
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+    
+    <!--/Main layout-->
+    <div class="fixedbtn" style="bottom: 45px; right: 28px;">
+        <a href="index.html" class="btn-floating btn-large blue">
+            <i class="fa fa-undo"></i>
+        </a>
+    </div>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script>
+        $("#navigation").load("components/navigation.html");
+    </script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    
+
+    
+    <!-- Customizer -->
+    <script type="text/javascript" src="../../js/customizer.min.js"></script>
+
+   
+    
+    <!-- JVectorMap -->
+    <link rel="stylesheet" href="js/vendor/jvectormap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <script src="js/vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="js/vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
+
+    
+    <script>
+    // Data Picker Initialization
+    $(function() {
+    $('#datetimepicker1').datetimepicker();
+});
+
+    // Material Select Initialization
+    $(document).ready(function() {
+        $('.mdb-select').material_select();
+    });
+
+    // Sidenav Initialization
+    $(".button-collapse").sideNav();
+    var el = document.querySelector('.custom-scrollbar');
+    Ps.initialize(el);
+
+    // Tooltips Initialization
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+</main>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+
+    <style>
+      #map {
+        height: 100%;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+      
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+
+    <script>
+      // Initialize Firebase
+      const config = {
+        apiKey: "AIzaSyA53DpBwzepM6SwAaoLZ0CVw8hggXv1Wao",
+        authDomain: "crimepoint-e5354.firebaseapp.com",
+        databaseURL: "https://crimepoint-e5354.firebaseio.com",
+        projectId: "crimepoint-e5354",
+        storageBucket: "crimepoint-e5354.appspot.com",
+        messagingSenderId: "252482425198"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+  </head>
+
+  <body>
+
+    <div id="map"></div>
+
+    <script>
+      function initMap() {
+        firebase.database().ref('/development/crimeSpot/').once('value', function(snapshot) {
+          userDict = snapshot.val();
+
+          let data = [];
+          for(i=Object.keys(userDict).length-1; i>=0; i--) {
+            let lat1 = userDict[Object.keys(userDict)[i]].lat;
+            let lag = userDict[Object.keys(userDict)[i]].lng;
+            let title = userDict[Object.keys(userDict)[i]].title;
+            let description = userDict[Object.keys(userDict)[i]].description;
+
+            data.push({
+              title: title,
+              lat: parseInt(lat1),
+              lng: parseInt(lag)
+            });
+          }
+
+          let map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 22.149914, lng: 73.168662},
+            zoom: 8
+            });
+
+          const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          let markers = data.map(function(location, i) {
+            return new google.maps.Marker({
+              position: location,
+              label: labels[i % labels.length]
+            });
+          });
+
+          // Add a marker clusterer to manage the markers.
+          let markerCluster = new MarkerClusterer(map, markers,
+              {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+          });
+      }
+    </script>
+
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cgp8OjuVlYgmaGD4-xxuxH_vbqunS2M&callback=initMap">
+    </script>
+
+  </body>
+</html>

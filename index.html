@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>crimePoint</title>
+    
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+  
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA53DpBwzepM6SwAaoLZ0CVw8hggXv1Wao",
+    authDomain: "crimepoint-e5354.firebaseapp.com",
+    databaseURL: "https://crimepoint-e5354.firebaseio.com",
+    projectId: "crimepoint-e5354",
+    storageBucket: "crimepoint-e5354.appspot.com",
+    messagingSenderId: "252482425198"
+  };
+  firebase.initializeApp(config);
+</script>
+  
+</head>
+
+<body class="fixed-sn ">
+    
+
+                    <!--Crucial button-->
+                  
+    <div class="modal fade" id="standardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header white-text" style="background-color: #154771">
+                        <p class="heading" contenteditable="true">Create advanced websites and apps with MDB Pro</p>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="file-field">
+                                <img src="../../../../wp-content/uploads/2016/05/updatepro-min-1.jpg" class="img-fluid z-depth-1">
+                                <input type="file">
+                            </div>
+                        </form>
+                        <br>
+                        <p class="card-text" contenteditable="true"><strong>With MDB PRO you can create easily and fast the most advanced projects.</strong></p>
+                        <p class="card-text" contenteditable="true"><strong>2000+</strong> stunning premium components, <strong>40+</strong> sections, <strong>20+</strong> templates, direct contact with our team to help you with any questions and unlimited future updates.</p>
+
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <a id="2lvlModal-learnMore" class="btn btn-danger" contenteditable="true">Learn more</a>
+                        <a id="2lvlModal-cancel" class="btn btn-default" contenteditable="true">No, thanks</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+
+
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="width:30%; margin:2% 30% 0% 30%;">  
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">     
+      <div id="map"></div> 
+    </div>
+
+    <div class="fixedbtn" style="bottom: 110px; right: 35px;">
+      <a href="clust.html" class="btn-floating btn-large blue">
+        <i class="fa fa-edit"></i>
+      </a>
+   </div>
+
+    <div class="fixedbtn" style="bottom: 45px; right: 35px;">
+      <a href="addspot.html" class="btn-floating btn-large blue">
+        <i class="fa fa-edit"></i>
+      </a>
+   </div>
+
+    <!--/Main layout-->
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+   
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cgp8OjuVlYgmaGD4-xxuxH_vbqunS2M&libraries=places&callback=initMap"
+         async defer></script>
+
+    <script>
+        $("#navigation").load("components/navigation.html");
+    </script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').pickadate();
+
+
+        // Material Select Initialization
+        $(document).ready(function() {
+            $('.mdb-select').material_select();
+        });
+
+        // Sidenav Initialization
+        $(".button-collapse").sideNav();
+
+        // Tooltips Initialization
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+            function initMap() {
+                
+                 if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else { 
+                        alert("Geolocation is not supported by this browser.");
+                    }
+
+                function showPosition(position) {
+                    var latitude = position.coords.latitude; 
+                    var longitude = position.coords.longitude;
+                
+                  var myLatLng = {
+                    lat: latitude, 
+                    lng: longitude
+                  };
+
+
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: myLatLng,
+                    styles: [
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    }
+]
+                  });
+
+                  var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        7
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+            var iconBase = 'icong';
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: iconBase,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });  
+                  
+                  firebase.database().ref('/development/crimeSpot/').once('value', function(snapshot){
+
+                    userDict = snapshot.val();
+                    var data = [];
+                    for(i=Object.keys(userDict).length-1; i>=0; i--){
+                       
+                        data.push(Object.keys(userDict)[i]);
+                        var lat1 = userDict[Object.keys(userDict)[i]].lat;
+                         var lag = userDict[Object.keys(userDict)[i]].lng;
+                          var title = userDict[Object.keys(userDict)[i]].title;
+                           var description = userDict[Object.keys(userDict)[i]].description;
+
+                                  // Using the function to create multiple markers
+                  geocodeLatLng(lat1, lag,title, description);
+                
+
+                var infowindow = new google.maps.InfoWindow({maxWidth: 300});
+                  
+                  function geocodeLatLng(lat1, laq,title,body) {
+                    var geocoder = new google.maps.Geocoder;
+                     var latlng = new google.maps.LatLng(lat1, lag);
+                   
+                    geocoder.geocode({'location': latlng}, function(results, status) {
+                      if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                          var marker = new google.maps.Marker({
+                            position: latlng,
+                            icon: 'icon1.png',
+                            map: map
+                          });
+                          
+
+                          marker.addListener('click', function() {
+                            infowindow.setContent("<h3>" + title + "</h3>" + "<p>" + body + "</p>");
+                            infowindow.open(map, marker);
+                          });
+                          
+                        } else {
+                          window.alert('No results found');
+                        }
+                      } else {
+                        window.alert('Geocoder failed due to: ' + status);
+                      }
+                    });
+                  }
+
+}
+              });
+               }  
+                }
+    </script>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+    <script>
+        $('#actionScoring, #actionCondition').on('show.bs.modal', function(e) {
+            $("label").addClass("active");
+        })
+
+        $('#actionScoring, #actionCondition').on('show.bs.modal', function(e) {
+            $("label").addClass("active");
+            $('.mdb-select').material_select();
+        })
+        $('#actionScoring, #actionCondition').on('hide.bs.modal', function(e) {
+            $("label").addClass("active");
+            $('.mdb-select').material_select('destroy');
+        })
+    </script>
+</body>
+</html>
