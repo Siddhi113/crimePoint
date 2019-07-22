@@ -23,8 +23,9 @@
 
     <script>
       // Initialize Firebase
+      //Enter your API key
       const config = {
-        apiKey: "AIzaSyA53DpBwzepM6SwAaoLZ0CVw8hggXv1Wao",
+        apiKey: "",
         authDomain: "crimepoint-e5354.firebaseapp.com",
         databaseURL: "https://crimepoint-e5354.firebaseio.com",
         projectId: "crimepoint-e5354",
@@ -41,12 +42,12 @@
     <div id="map"></div>
 
     <script>
-      function initMap() {
-        firebase.database().ref('/development/crimeSpot/').once('value', function(snapshot) {
+      async function initMap() {
+        await firebase.database().ref('/development/crimeSpot/').once('value', function(snapshot) {
           userDict = snapshot.val();
 
           let data = [];
-          for(i=Object.keys(userDict).length-1; i>=0; i--) {
+          for(let i=Object.keys(userDict).length-1; i>=0; i--) {
             let lat1 = userDict[Object.keys(userDict)[i]].lat;
             let lag = userDict[Object.keys(userDict)[i]].lng;
             let title = userDict[Object.keys(userDict)[i]].title;
@@ -54,14 +55,14 @@
 
             data.push({
               title: title,
-              lat: parseInt(lat1),
-              lng: parseInt(lag)
+              lat: parseFloat(lat1),
+              lng: parseFloat(lag)
             });
           }
 
           let map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 22.149914, lng: 73.168662},
-            zoom: 8
+            zoom: 3,            
+            center: {lat: 22.149914, lng: 73.168662}
             });
 
           const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -81,8 +82,9 @@
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
+    <!--Enter key -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cgp8OjuVlYgmaGD4-xxuxH_vbqunS2M&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key&callback=initMap">
     </script>
 
   </body>
